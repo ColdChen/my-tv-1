@@ -201,14 +201,16 @@ class WebViewPool private constructor(private val context: Context) {
             }
             
             override fun onConsoleMessage(consoleMessage: ConsoleMessage?): Boolean {
-                if (consoleMessage?.message() == "success" && !preload) {
-                    Log.i(TAG, "${tvModel.tv.title} success")
-                    tvModel.tv.finished?.let {
-                        webView.evaluateJavascript(it) { res ->
-                            Log.i(TAG, "${tvModel.tv.title} finished: $res")
+                if (consoleMessage?.message() == "success") {
+                    Log.i(TAG, "${tvModel.tv.title} success (预加载: $preload)")
+                    if (!preload) {
+                        tvModel.tv.finished?.let {
+                            webView.evaluateJavascript(it) { res ->
+                                Log.i(TAG, "${tvModel.tv.title} finished: $res")
+                            }
                         }
+                        tvModel.setErrInfo("web ok")
                     }
-                    tvModel.setErrInfo("web ok")
                 }
                 return super.onConsoleMessage(consoleMessage)
             }
