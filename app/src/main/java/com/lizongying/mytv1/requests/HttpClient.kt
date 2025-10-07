@@ -10,6 +10,7 @@ import java.security.KeyStore
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManagerFactory
 import javax.net.ssl.X509TrustManager
+import java.util.concurrent.TimeUnit
 
 
 object HttpClient {
@@ -78,6 +79,10 @@ object HttpClient {
                 .sslSocketFactory(sslContext.socketFactory, trustManager)
                 .hostnameVerifier { _, _ -> true }
                 .dns(DnsCache())
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
+                .connectionPool(okhttp3.ConnectionPool(10, 5, TimeUnit.MINUTES))
                 .apply { enableTls12OnPreLollipop() }
                 .build()
         } catch (e: Exception) {

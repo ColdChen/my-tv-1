@@ -118,6 +118,9 @@ class MainActivity : FragmentActivity() {
     override fun onResumeFragments() {
         super.onResumeFragments()
 
+        // 初始化DNS缓存管理器
+        DNSCacheManager.getInstance()
+
         Log.i(TAG, "watch")
         TVList.groupModel.change.observe(this) { _ ->
             Log.i(TAG, "groupModel changed")

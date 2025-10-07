@@ -40,6 +40,8 @@ object SP {
     private const val KEY_STYLE = "style"
 
     const val KEY_EPG = "epg"
+    private const val KEY_PRELOAD_ENABLED = "preload_enabled"
+    private const val KEY_WEBVIEW_CACHE_ENABLED = "webview_cache_enabled"
 
     const val DEFAULT_CHANNEL_REVERSAL = false
     const val DEFAULT_CHANNEL_NUM = false
@@ -48,6 +50,8 @@ object SP {
     const val DEFAULT_CONFIG_URL = ""
     const val DEFAULT_DISPLAY_SECONDS = true
     const val DEFAULT_COMPACT_MENU = true
+    const val DEFAULT_PRELOAD_ENABLED = true
+    const val DEFAULT_WEBVIEW_CACHE_ENABLED = true
 //    transparent
     const val DEFAULT_STYLE = ""
 
@@ -153,4 +157,12 @@ object SP {
     var style: String?
         get() = sp.getString(KEY_STYLE, DEFAULT_STYLE)
         set(value) = sp.edit().putString(KEY_STYLE, value).apply()
+
+    var preloadEnabled: Boolean
+        get() = sp.getBoolean(KEY_PRELOAD_ENABLED, DEFAULT_PRELOAD_ENABLED)
+        set(value) = sp.edit().putBoolean(KEY_PRELOAD_ENABLED, value).apply()
+
+    var webViewCacheEnabled: Boolean
+        get() = sp.getBoolean(KEY_WEBVIEW_CACHE_ENABLED, DEFAULT_WEBVIEW_CACHE_ENABLED)
+        set(value) = sp.edit().putBoolean(KEY_WEBVIEW_CACHE_ENABLED, value).apply()
 }
