@@ -13,35 +13,30 @@
 
         <RelativeLayout
             android:id="@+id/time"
-            android:layout_width="120dp"
+            android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_gravity="end|top"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
-            android:gravity="end|bottom">
-
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="50dp"
+            android:gravity="end|bottom" >
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/channel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/content"
-                android:layout_gravity="left"
+                android:layout_gravity="end|bottom"
                 android:textColor="@color/white"
+                android:textStyle="normal"
                 android:textSize="36sp"
-                android:textStyle="normal" />
-
+                tools:text="999"
+                android:layout_alignBaseline="@+id/content"/>
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/content"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_gravity="top|end"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="8dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
                 android:textColor="@color/white"
-                android:textSize="26sp"
                 android:textStyle="normal"
+                android:textSize="30sp"
                 tools:text="12:34:56" />
         </RelativeLayout>
 
