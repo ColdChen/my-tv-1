@@ -177,7 +177,6 @@ class MainActivity : FragmentActivity() {
                     } else {
                         Log.i(TAG, "${tvModel.tv.title} ${tvModel.errInfo.value.toString()}")
                         hideFragment(webFragment)
-                        hideFragment(webFragment)
                         showErrorFragment(tvModel.errInfo.value.toString())
                     }
                 }

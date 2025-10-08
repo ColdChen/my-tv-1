@@ -199,13 +199,13 @@ class WebFragment : Fragment() {
             ): WebResourceResponse? {
                 val uri = request?.url
 
-                Log.d(TAG, "${request?.method} ${uri.toString()} ${request?.requestHeaders}")
+//                Log.d(TAG, "${request?.method} ${uri.toString()} ${request?.requestHeaders}")
 
                 blockMap[tvModel?.tv?.group]?.let {
                     for (i in it) {
                         if (uri?.path?.contains(i) == true) {
-                            Log.i(TAG, "block path ${uri.path}")
-                            return WebResourceResponse("text/plain", "utf-8", null)
+//                            Log.i(TAG, "block path ${uri.path}")
+                            return WebResourceResponse("text/plain", "utf-8", ByteArrayInputStream(ByteArray(0)))
                         }
                     }
                 }
@@ -213,16 +213,14 @@ class WebFragment : Fragment() {
                 tvModel?.tv?.block?.let {
                     for (i in it) {
                         if (uri?.path?.contains(i) == true) {
-                            Log.i(TAG, "block path ${uri.path}")
-                            return WebResourceResponse("text/plain", "utf-8", null)
+//                            Log.i(TAG, "block path ${uri.path}")
+                            return WebResourceResponse("text/plain", "utf-8", ByteArrayInputStream(ByteArray(0)))
                         }
                     }
                 }
 
-                if (uri?.path?.endsWith(
-                        ".css"
-                    ) == true
-                ) {
+                if (uri?.lastPathSegment?.endsWith(".css", ignoreCase = true) == true) {
+//                    Log.i(TAG, "block css: ${uri}")
                     return WebResourceResponse(
                         "text/css",
                         "utf-8",
@@ -240,15 +238,18 @@ class WebFragment : Fragment() {
                         ".webp"
                     ) == true || uri?.path?.endsWith(
                         ".svg"
+                    ) == true || uri?.path?.endsWith(
+                        ".ico"
                     ) == true)
                 ) {
+//                    Log.i(TAG, "block path ${uri.path}")
                     return WebResourceResponse(
                         "image/png",
                         "utf-8",
                         ByteArrayInputStream(ByteArray(0))
                     )
                 }
-
+                Log.d(TAG, "pass: ${request?.method} ${uri.toString()} ${request?.requestHeaders}")
                 return null
             }
 
@@ -352,6 +353,7 @@ img {
         finished = 0
         this.tvModel = tvModel
         var url = tvModel.videoUrl.value as String
+        webView.stopLoading()
         Log.i(TAG, "play ${tvModel.tv.id} ${tvModel.tv.title} $url")
 //        url = "https://www.nmtv.cn/liveTv"
         webView.loadUrl(url)

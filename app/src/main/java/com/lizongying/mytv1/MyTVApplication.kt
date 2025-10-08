@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.DisplayMetrics
 import android.view.WindowManager
+import android.webkit.WebView
 import android.widget.Toast
 
 class MyTVApplication : Application() {
@@ -33,6 +34,8 @@ class MyTVApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        // 预加载 WebView 内核
+        WebView(this).destroy()
         instance = this
 
         displayMetrics = DisplayMetrics()
