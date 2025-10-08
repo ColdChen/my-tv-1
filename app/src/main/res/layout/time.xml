@@ -16,27 +16,29 @@
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_gravity="end|top"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="50dp"
-            android:gravity="end|bottom" >
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="9dp"
+            android:gravity="end|bottom">
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/channel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/content"
                 android:layout_gravity="end|bottom"
                 android:textColor="@color/white"
-                android:textStyle="normal"
                 android:textSize="36sp"
-                tools:text="999"
-                android:layout_alignBaseline="@+id/content"/>
+                android:textStyle="normal"
+                tools:text="999" />
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/content"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|bottom"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom|end"
                 android:textColor="@color/white"
+                android:textSize="28sp"
                 android:textStyle="normal"
-                android:textSize="30sp"
                 tools:text="12:34:56" />
         </RelativeLayout>
 
